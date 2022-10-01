@@ -1,0 +1,16 @@
+---
+# tasks file for readarr configuration
+- name: Copy Systemd readarr template
+  template:
+    src: systemd_readarr.service.j2
+    dest: /etc/systemd/system/readarr.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Start radarr readarr
+  systemd:
+    state: started
+    enabled: yes
+    name: readarr.service
+    daemon_reload: yes

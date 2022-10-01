@@ -1,0 +1,6 @@
+---
+# handlers file for readarr
+- name: fapolicyd update
+  shell: fapolicyd-cli --update
+  changed_when: false
+  failed_when: false

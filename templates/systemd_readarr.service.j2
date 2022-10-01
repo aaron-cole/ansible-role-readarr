@@ -1,0 +1,18 @@
+#
+# Systemd unit file for readarr
+#
+
+[Unit]
+Description=readarr Daemon
+
+[Service]
+Type=simple
+User={{ readarr_user }}
+Group={{ readarr_group }}
+ExecStart={{ readarr_base_install_dir }}/Readarr/Readarr /data={{ readarr_config_dir }}
+Restart=always
+RestartSec=15
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

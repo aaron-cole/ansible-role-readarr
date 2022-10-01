@@ -1,0 +1,12 @@
+---
+# tasks for fapolicyd configuration if needed
+- name: Trust Readarr
+  shell: "fapolicyd-cli --file add {{ radarr_base_install_dir }}/Readarr --trust-file readarr"
+  changed_when: false
+  failed_when: false
+  notify: fapolicyd update
+  when: "'fapolicyd' in ansible_facts['packages']"
+
+# Gotta flush handlers to make sure fapolicyd gets updated
+- name: Flush handlers to make Readarr work with fapolicy
+  meta: flush_handlers

@@ -1,0 +1,7 @@
+---
+# tasks file for package installation
+
+- name: Install required packages
+  yum:
+    name: "{{ readarr_packages }}"
+    state: present

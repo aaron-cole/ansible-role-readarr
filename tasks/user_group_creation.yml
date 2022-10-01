@@ -1,0 +1,23 @@
+---
+# user group tasks for readarr
+
+- name: Create group for readarr if defined
+  group:
+    name: "{{ readarr_group }}"
+    gid: "{{ readarr_group_gid | default(omit) }}"
+    state: present
+    system: yes
+  when: readarr_group is defined
+
+# Create our user we will use
+- name: Create readarr user
+  user:
+    name: "{{ readarr_user }}"
+    state: present
+    shell: /sbin/nologin
+    group: "{{ readarr_group }}"
+    system: yes
+    home: "{{ readarr_base_install_dir }}/Readarr"
+    comment: "readarr service account"
+    uid: "{{ readarr_uid | default(omit) }}"
+    create_home: no

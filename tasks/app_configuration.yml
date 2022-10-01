@@ -1,0 +1,39 @@
+---
+# tasks file for app configuration
+
+# Setup readarr
+- name: Download readarr tarball
+  get_url:
+    url:  "{{ readarr_download_url }}"
+    dest: /tmp
+  register: readarr_tarball
+
+# Untar
+- name: Extract readarr tarball
+  unarchive:
+    src: "{{ readarr_tarball['dest'] }}"
+    dest: "{{ readarr_base_install_dir }}"
+    owner: "{{ readarr_user }}"
+    group: "{{ readarr_group }}"
+    remote_src: yes
+
+- name: Set File perms on readarr dir
+  file:
+    path: "{{ readarr_base_install_dir }}/readarr"
+    owner: "{{ readarr_user }}"
+    group: "{{ readarr_group }}"
+    recurse: yes
+
+# Ensure data dir exists
+- name: Create data directory
+  file:
+    path: "{{ readarr_config_dir }}"
+    owner: "{{ readarr_user }}"
+    group: "{{ readarr_group }}"
+    state: directory
+
+# Remove tarball from /tmp
+- name: Remove tarball from download
+  file:
+    path: "{{ readarr_tarball['dest'] }}"
+    state: absent

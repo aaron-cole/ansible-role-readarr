@@ -1,0 +1,14 @@
+---
+# defaults file for readarr
+
+readarr_user: readarr
+# readarr_uid:
+readarr_group: media
+# readarr_group_gid:
+readarr_base_install_dir: /opt
+readarr_config_dir: /opt/data/readarr
+readarr_download_url: "https://readarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=x64"
+readarr_port: 8787
+readarr_packages:
+ - curl
+ - sqlite
