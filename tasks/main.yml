@@ -15,8 +15,8 @@
 - name: readarr Configuration
   include_tasks: "app_configuration.yml"
 
- - name: fapolicyd tasks
-   include_tasks: "fapolicyd_configuration.yml"
+- name: fapolicyd tasks
+  include_tasks: "fapolicyd_configuration.yml"
 
 - name: firewall tasks
   include_tasks: "firewall_configuration.yml"
